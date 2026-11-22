@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L'orthographe qui se voit</title>
+<style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+td{vertical-align:top}td:first-child{white-space:nowrap}@media(max-width:640px){td:first-child{white-space:normal}.carte table{display:block;overflow-x:auto;max-width:100%}}</style></head>
+<body>
+<header class="bandeau"><div class="wrap">
+ <div class="chapitre">Écrits professionnels · @learning <span>/</span> Séquence 1</div><h1>L'orthographe qui se voit</h1><p class="sous">Fiche mémo — Homophones, terminaisons en -é / -er, pluriels</p>
+</div></header>
+<div class="wrap">
+<a class="dl" href="EP_elearning_S1_Fiche_memo.pdf" download>⬇ Télécharger la fiche mémo (PDF)</a>
+
+<h2><span class="num">1 ·</span>Le principe : remplacer pour trancher</h2>
+<div class="carte">
+<p>Les fautes qui sautent aux yeux d'un client ne sont pas les plus savantes : ce sont les plus fréquentes. Un « a » à la place d'un « à », un « envoyé » à la place d'un « envoyer », un « chaque dossiers ». Cette fiche réunit les règles qui en corrigent la grande majorité, avec pour chacune <b>UN TEST DE REMPLACEMENT</b> : on remplace le mot douteux par un autre, et l'oreille tranche.</p>
+<div class="enc"><span class="t">LA MÉTHODE EN UNE LIGNE</span>Un mot vous fait hésiter ? <b>REMPLACEZ-LE</b> par le mot de test indiqué ci-dessous. Si la phrase tient, la forme est trouvée.</div>
+</div>
+
+<h2><span class="num">2 ·</span>Les homophones</h2>
+<div class="carte">
+<table><thead><tr><th>Paire</th><th>Le test</th><th>Exemples justes</th></tr></thead><tbody><tr><td><b>a / à</b></td><td>Remplacez par <b>avait</b>. Si la phrase tient, écrivez <b>a</b> ; sinon, <b>à</b>.</td><td>Votre dossier <b>a</b> été transmis (avait été) · Je reste <b>à</b> votre disposition</td></tr><tr><td><b>est / et</b></td><td>Remplacez par <b>était</b>. Si la phrase tient, écrivez <b>est</b> ; sinon, <b>et</b> (= et puis).</td><td>Ce justificatif <b>est</b> indispensable · la facture <b>et</b> le devis</td></tr><tr><td><b>ont / on</b></td><td>Remplacez par <b>avaient</b> : <b>ont</b>. Remplacez par <b>il</b> : <b>on</b>.</td><td>Nos conseillers <b>ont</b> vérifié · <b>On</b> vous rappellera demain</td></tr><tr><td><b>sont / son</b></td><td>Remplacez par <b>étaient</b> : <b>sont</b>. Remplacez par <b>mon</b> : <b>son</b>.</td><td>Ils <b>sont</b> à votre écoute · <b>son</b> contrat</td></tr><tr><td><b>où / ou</b></td><td>Remplacez par <b>ou bien</b> : <b>ou</b>. Le lieu ou le moment : <b>où</b>.</td><td>par courrier <b>ou</b> par mail · le jour <b>où</b> le virement sera fait</td></tr><tr><td><b>ces / ses</b></td><td><b>Ces</b> montre (ces dossiers-là). <b>Ses</b> marque l'appartenance (les siens).</td><td><b>Ces</b> informations sont à jour · Le client a transmis <b>ses</b> relevés</td></tr><tr><td><b>c'est / s'est</b></td><td>Remplacez par <b>cela est</b> : <b>c'est</b>. Mettez la phrase au « je » : si « je me suis » apparaît, <b>s'est</b>.</td><td><b>C'est</b> noté · Le service <b>s'est</b> engagé (je me suis engagé)</td></tr><tr><td><b>ce / se</b></td><td>Devant un verbe que l'on peut mettre au « je me… » : <b>se</b>. Sinon, <b>ce</b> (ce dossier, ce que).</td><td>Le délai <b>se</b> prolonge · <b>ce</b> que vous demandez</td></tr><tr><td><b>l'a / la / là</b></td><td>Remplacez par <b>l'avait</b> : <b>l'a</b>. Par <b>ici</b> : <b>là</b>. Sinon : <b>la</b>.</td><td>Il <b>l'a</b> reçu · <b>la</b> facture · Je suis <b>là</b> jusqu'à 17 h</td></tr></tbody></table>
+</div>
+
+<h2><span class="num">3 ·</span>La fin des verbes</h2>
+<div class="carte">
+<table><thead><tr><th>Hésitation</th><th>Le test</th><th>Exemples justes</th></tr></thead><tbody><tr><td><b>-er ou -é ?</b></td><td>Remplacez le verbe par <b>prendre / pris</b>. Si « prendre » convient, écrivez <b>-er</b> ; si « pris » convient, écrivez <b>-é</b> (-ée, -és, -ées selon l'accord, vu en séquence 2).</td><td>Pouvez-vous nous l'<b>envoyer</b> ? (nous le prendre) · Je vous ai <b>envoyé</b> le devis (je vous ai pris)</td></tr><tr><td><b>Après une préposition</b></td><td>Le verbe qui suit directement <b>à, de, pour, sans, afin de</b> est à l'infinitif (en <b>-er</b> pour les verbes en -er).</td><td>Merci de nous <b>contacter</b> · sans <b>attendre</b> · afin de <b>régulariser</b></td></tr><tr><td><b>-ez ou -er ?</b></td><td>Avec <b>vous</b> sujet, le verbe conjugué finit en <b>-ez</b> (sauf vous êtes, faites, dites). Le verbe qui le suit est à l'infinitif (vous pouvez nous <b>appeler</b>), sauf après <b>avez</b> ou <b>êtes</b>, où c'est le participe en -é (vous avez <b>demandé</b>) : appliquez le test prendre / pris.</td><td>Vous <b>pouvez</b> nous <b>appeler</b> · Vous <b>souhaitez</b> <b>modifier</b> votre contrat</td></tr><tr><td><b>-rai ou -rais ?</b></td><td>Remplacez <b>je</b> par <b>nous</b>. « Nous enverrons » : futur, <b>-rai</b>. « Nous enverrions » : conditionnel, <b>-rais</b>.</td><td>Je vous <b>enverrai</b> le contrat demain (certain) · Je <b>souhaiterais</b> un rendez-vous (souhait poli)</td></tr></tbody></table>
+<div class="enc al"><span class="t">LA FAUTE LA PLUS FRÉQUENTE</span>« Pouvez-vous nous <b>envoyé</b> » au lieu de « nous <b>envoyer</b> ». Le test « prendre / pris » la règle à coup sûr : on dit « pouvez-vous nous <b>prendre</b> », jamais « nous pris ».</div>
+<div class="enc ci"><span class="t">FUTUR OU CONDITIONNEL ?</span>Quand vous prenez un engagement, écrivez au futur : « je vous <b>enverrai</b> ». Le conditionnel « enverrais » laisse entendre que l'envoi n'est pas certain.</div>
+</div>
+
+<h2><span class="num">4 ·</span>Les pluriels qui se voient</h2>
+<div class="carte">
+<table><thead><tr><th>Mot ou cas</th><th>La règle</th><th>Exemples justes</th></tr></thead><tbody><tr><td><b>Chaque</b></td><td>Toujours suivi du <b>SINGULIER</b>.</td><td>chaque <b>dossier</b>, chaque <b>client</b> — jamais « chaque dossiers »</td></tr><tr><td><b>Tout / tous / toutes</b></td><td>Il s'accorde avec le nom qu'il accompagne.</td><td><b>tout</b> le dossier · <b>tous</b> les documents · <b>toutes</b> nos excuses</td></tr><tr><td><b>Leur ou leurs ?</b></td><td>Devant un verbe, <b>leur</b> ne prend jamais de s (= à eux). Devant un nom, il s'accorde : <b>leurs</b> s'il y en a plusieurs.</td><td>Je <b>leur</b> ai répondu · <b>leurs</b> contrats · <b>leur</b> adresse</td></tr><tr><td><b>Pluriels en -x</b></td><td><b>-eau, -eu, -au</b> prennent un x (sauf pneus, bleus, landaus). Sept noms en <b>-ou</b> aussi : bijoux, cailloux, choux, genoux, hiboux, joujoux, poux. <b>-al</b> devient <b>-aux</b> (sauf bals, festivals, récitals, chacals, carnavals, régals). <b>-ail</b> prend un s, sauf <b>baux</b>, travaux, vitraux, émaux, coraux, soupiraux, vantaux.</td><td>des bureaux · des journaux · les travaux · les <b>baux</b> commerciaux</td></tr><tr><td><b>Toujours au pluriel</b></td><td>Certains noms ne s'emploient qu'au pluriel.</td><td>les <b>frais</b> de dossier · des <b>honoraires</b> · les <b>arrhes</b> · nos <b>condoléances</b></td></tr><tr><td><b>Ci-joint</b></td><td>Invariable en tête de phrase et devant un nom sans déterminant ; accordé quand il suit le nom. Dans la phrase, devant un nom précédé d'un déterminant : invariable ou accordé, au choix.</td><td><b>Ci-joint</b> les factures · les pièces <b>ci-jointes</b> · vous trouverez <b>ci-joint</b> la copie</td></tr></tbody></table>
+</div>
+
+<h2><span class="num">5 ·</span>À retenir</h2>
+<div class="carte">
+<ol class="q"><li>Une faute d'usage se corrige en remplaçant le mot douteux : l'oreille sait ce que l'œil ne voit plus.</li><li>« prendre » ou « pris » ? Une grande partie des fautes de verbes d'un mail se règlent avec ce seul test.</li><li>Chaque est singulier, leur devant un verbe est invariable, tout s'accorde avec son nom.</li><li>Relisez une fois pour le sens, puis une seconde fois uniquement pour les petits mots : a, et, on, son, ou, ces, ce, la.</li></ol>
+</div>
+
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</div>
+</body></html>
